@@ -35,12 +35,10 @@ A Flask application that integrates **LangChain**, **OpenAI GPT-4**, and **Chrom
 - Python 3.8 or above installed.
 - OpenAI API key.
 - [LangChain API key](https://docs.langchain.com/).
-- [Hugging Face API key](https://huggingface.co/).
 
 ---
 
 ### 1. Clone the Repository
-```bash
 git clone https://github.com/your-username/flask-langchain-app.git
 cd flask-langchain-app
 
