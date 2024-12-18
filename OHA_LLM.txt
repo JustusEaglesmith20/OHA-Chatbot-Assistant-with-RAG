@@ -1,4 +1,0 @@
-@echo off
-cd C:\Users\justu\OneDrive\Documents\Data_science\Portfolio\OHP LLM
-python OHA_LLM.py
-pause
