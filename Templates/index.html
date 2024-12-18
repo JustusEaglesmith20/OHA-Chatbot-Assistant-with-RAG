@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OHP LLM Interaction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        .response {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">OHP LLM Chat</h1>
+        <form id="promptForm">
+            <div class="mb-3">
+                <label for="prompt" class="form-label">Enter your message:</label>
+                <textarea class="form-control" id="prompt" name="prompt" rows="4" placeholder="Type your question here..."></textarea>
+            </div>
+            <button type="button" class="btn btn-primary w-100" onclick="submitPrompt()">Submit</button>
+        </form>
+        <div id="response" class="response mt-3 text-center d-none">
+            <div class="spinner-border text-primary" role="status" id="loadingSpinner">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div id="responseText" class="mt-3"></div>
+        </div>
+    </div>
+
+    <script>
+        async function submitPrompt() {
+            const prompt = document.getElementById('prompt').value;
+            const responseDiv = document.getElementById('response');
+            const responseText = document.getElementById('responseText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+
+            responseDiv.classList.remove('d-none');
+            loadingSpinner.style.display = 'block';
+            responseText.innerHTML = "";
+
+            try {
+                const response = await fetch('/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `prompt=${encodeURIComponent(prompt)}`
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    loadingSpinner.style.display = 'none';
+                    responseText.innerHTML = `<strong>Response:</strong> ${data.response}`;
+                } else {
+                    loadingSpinner.style.display = 'none';
+                    responseText.innerHTML = `<strong>Error:</strong> Unable to get response from the model.`;
+                }
+            } catch (error) {
+                loadingSpinner.style.display = 'none';
+                responseText.innerHTML = `<strong>Error:</strong> ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>
