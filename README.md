@@ -120,9 +120,8 @@ Ensure dependencies are installed.
 Debugging
 Add debug prints to inspect API keys or request data:
 
-python
-Copy code
 print(os.getenv("OPENAI_API_KEY"))  # For testing only, remove in production.
+
 Future Enhancements
 Add user authentication for personalized experiences.
 Deploy to a cloud platform (e.g., Render, AWS).
@@ -130,18 +129,11 @@ Expand document sources for enhanced knowledge.
 Contributing
 Fork the repository.
 Create a feature branch:
-bash
-Copy code
 git checkout -b feature-name
 Commit your changes:
-bash
-Copy code
 git commit -m "Add feature-name"
 Push to the branch:
-bash
-Copy code
 git push origin feature-name
 Open a pull request.
 License
 This project is licensed under the MIT License. See the LICENSE file for details.
-
