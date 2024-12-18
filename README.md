@@ -1,4 +1,4 @@
-### Flask-LangChain App
+Flask-LangChain App
 A Flask application that integrates LangChain, OpenAI GPT-4, and Chroma vector database to provide a dynamic question-answering experience with Retrieval-Augmented Generation (RAG). This app uses a combination of backend intelligence and user-friendly design to deliver contextual and accurate responses.
 
 Features
